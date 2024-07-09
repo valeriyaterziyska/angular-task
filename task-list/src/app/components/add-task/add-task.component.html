@@ -1,0 +1,22 @@
+<form class="add-form" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <label for="title">Task</label>
+    <input
+      type="text"
+      name="title"
+      [(ngModel)]="title"
+      id="title"
+      placeholder="Add Task"
+    />
+  </div>
+  <div class="form-control form-control-check">
+    <label for="completed">Status</label>
+    <input
+      type="radio"
+      name="completed"
+      [(ngModel)]="completed"
+      value="false"
+    />
+  </div>
+  <input type="submit" value="Save Task" class="btn btn-block" />
+</form>

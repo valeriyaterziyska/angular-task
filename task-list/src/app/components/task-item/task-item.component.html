@@ -3,5 +3,5 @@
     <h3>{{task.title}}</h3>
     <p>{{task.completed}}</p>
     <app-button color="orange" text="Edit" (btnClick)="editTask()"></app-button>
-    <app-button color="red" text="Delete" (btnClick)="deleteTask()"></app-button>
+    <app-button color="red" text="Delete" (btnClick)="deleteTask(task)"></app-button>
 </div>
