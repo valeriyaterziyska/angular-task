@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../Task';
+import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-task',
@@ -11,16 +13,21 @@ export class AddTaskComponent implements OnInit {
 
   title: string;
   completed: boolean = false;
+  showAddTask?: boolean;
+  subscription: Subscription;
 
-  constructor() {
+  constructor(private uiService: UiService) {
     this.title = '';
     this.completed = false;
+    this.subscription = this.uiService
+      .onToggle()
+      .subscribe((value) => (this.showAddTask = value));
   }
 
   ngOnInit(): void {}
 
   onSubmit() {
-    if(!this.title) {
+    if (!this.title) {
       alert('Please add task');
       return;
     }
@@ -28,7 +35,7 @@ export class AddTaskComponent implements OnInit {
     const newTask = {
       title: this.title,
       completed: this.completed,
-    }
+    };
 
     this.onAddTask.emit(newTask);
 
