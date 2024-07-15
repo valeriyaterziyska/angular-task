@@ -1,0 +1,29 @@
+<h1>Edit task</h1>
+<form
+  [formGroup]="taskEditForm"
+  (ngSubmit)="submitForm()"
+  *ngIf="task$ | async as task"
+  class="edit-form"
+>
+  <label for="title">Title:</label>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    value="{{ task.title }}"
+    formControlName="title"
+  />
+
+  <label for="completed">Status of completion:</label>
+  <input
+    type="checkbox"
+    id="completed"
+    name="completed"
+    value="{{ task.completed }}"
+    formControlName="completed"
+  />
+  <div class="btn-inline">
+  <button type="button" class="btn" routerLink="/">Back</button>
+  <button type="submit" class="btn" routerLink="/{{task.id}}">Save</button>
+  </div>
+</form>
