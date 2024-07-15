@@ -40,7 +40,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   submitForm(): void {
-    console.log('submit form');
+    // console.log('submit form');
 
     // const newTask = {...this.taskEditForm.value, id: this.id};
     this.title = this.taskEditForm.value.title as string;
@@ -58,10 +58,10 @@ export class EditTaskComponent implements OnInit {
       completed: this.completed,
     };
 
-    console.log('new values', newTask);
+    // console.log('new values', newTask);
 
     this.taskService.updateTask(newTask).subscribe((task) => {
-      console.log('updated task:', task);
+      // console.log('updated task:', task);
       alert("Saved changes!");
       this.router.navigate([`/${this.id}`]);
     });
