@@ -45,6 +45,13 @@ body {
   width: 100%;
 }
 
+.btn-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
 
 .form-control {
   margin: 20px 0;

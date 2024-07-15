@@ -1,43 +1,23 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Doctors Appointment 1",
-      "completed": true
-    },
-    {
-      "id": "2",
-      "title": "Meeting at School",
-      "completed": false
-    },
-    {
-      "id": "3",
-      "title": "Food Shopping",
-      "completed": false
-    },
-    {
-      "id": "d59f",
-      "title": "test",
-      "completed": false
-    },
-    {
-      "id": "7292",
-      "title": "test 2",
+      "id": "5079",
+      "title": "First task",
       "completed": "false"
     },
     {
-      "id": "a63f",
-      "title": "asdas",
-      "completed": false
-    },
-    {
-      "id": "4dca",
-      "title": "asdasd",
+      "id": "15c8",
+      "title": "Second Task",
       "completed": "false"
     },
     {
-      "id": "b1ff",
-      "title": "thursday cleaning",
+      "id": "cdf2",
+      "title": "Third Task",
+      "completed": "false"
+    },
+    {
+      "id": "040e",
+      "title": "Fourth Task",
       "completed": "false"
     }
   ]

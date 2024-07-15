@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Task } from '../../Task';
 import { TaskService } from '../../services/task.service';
-import { TASKS } from 'src/app/mock-tasks';
 
 @Component({
   selector: 'app-tasks',
@@ -9,7 +8,7 @@ import { TASKS } from 'src/app/mock-tasks';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-  tasks: Task[] = [];
+  @Output() tasks: Task[] = [];
 
   constructor(private taskService: TaskService) {}
 
@@ -25,7 +24,19 @@ export class TasksComponent implements OnInit {
       );
   }
 
+  editTask(task: Task) {
+    //Bad practice
+    if (task.completed === 'false') {
+      task.completed = 'true';
+    } else {
+      task.completed = 'false';
+    }
+    // task.completed = !task.completed;
+
+    this.taskService.updateTask(task).subscribe();
+  }
+
   addTask(task: Task) {
-    this.taskService.addTask(task).subscribe((task) => (this.tasks.push(task)));
+    this.taskService.addTask(task).subscribe((task) => this.tasks.push(task));
   }
 }

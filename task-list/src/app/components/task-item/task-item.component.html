@@ -1,7 +1,9 @@
 
-<div class="task">
-    <h3>{{task.title}}</h3>
-    <p>{{task.completed}}</p>
-    <app-button color="orange" text="Edit" (btnClick)="editTask()"></app-button>
+<div  [ngClass]="{ completed: task.completed}" class="task">
+    <h3>Title: {{task.title}}</h3>
+    <p>Completed status: {{task.completed}}</p>
+    <app-button color="orange" text="Change status" (btnClick)="editTaskStatus(task)"></app-button>
     <app-button color="red" text="Delete" (btnClick)="deleteTask(task)"></app-button>
+    <app-button color="grey" text="Details" (btnClick)="detailsTask(task)"></app-button>
+
 </div>
