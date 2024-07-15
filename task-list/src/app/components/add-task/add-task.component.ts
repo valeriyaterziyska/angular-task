@@ -12,13 +12,13 @@ export class AddTaskComponent implements OnInit {
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
 
   title: string;
-  completed: boolean = false;
+  completed: string ;
   showAddTask?: boolean;
   subscription: Subscription;
 
   constructor(private uiService: UiService) {
     this.title = '';
-    this.completed = false;
+    this.completed = 'false';
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value) => (this.showAddTask = value));
@@ -40,6 +40,6 @@ export class AddTaskComponent implements OnInit {
     this.onAddTask.emit(newTask);
 
     this.title = '';
-    this.completed = false;
+    this.completed = "false";
   }
 }

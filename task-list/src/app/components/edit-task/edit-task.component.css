@@ -1,0 +1,9 @@
+.edit-form {
+    display: block;
+    justify-self: start;
+}
+
+.edit-form input {
+    width: 100%;
+    margin-bottom: 10px;
+}
