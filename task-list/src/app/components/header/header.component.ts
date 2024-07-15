@@ -1,4 +1,8 @@
-import { afterRender, Component, Injector, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { UiService } from '../../services/ui.service';
 import { Observable, Subscription, of } from 'rxjs';
 import { TaskService } from '../../services/task.service';
@@ -11,13 +15,14 @@ import { Route, Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent{
   @Input() task: Task;
   @Input() tasks: Task[];
 
   title: string = 'Task List';
   showAddTask: boolean = false;
   subscription: Subscription;
+  sortedData: Task[];
 
   constructor(
     private uiService: UiService,
@@ -26,6 +31,7 @@ export class HeaderComponent {
   ) {
     this.task = { title: '', completed: '' };
     this.tasks = [];
+    this.sortedData = [];
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value) => (this.showAddTask = value));
@@ -37,8 +43,8 @@ export class HeaderComponent {
   sortTasks() {
     this.taskService.getTasks().subscribe((tasks) => {
       tasks.sort((a, b) => a.title.localeCompare(b.title));
-      
-      console.log('sorted', tasks);
+
+      console.log('view sorted', tasks);
     });
   }
 }

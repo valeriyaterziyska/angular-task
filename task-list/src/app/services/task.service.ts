@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Task } from '../Task';
 
 const httpOptions = {
@@ -25,6 +26,24 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiURL);
   }
 
+  getSortedData(sortOrder: string): Observable<Task[]> {
+    console.log('task service sort');
+    
+    return this.getTasks().pipe(
+      map(tasks => tasks.sort((a, b) => {
+        if(sortOrder === 'asc') {
+          console.log('asc', tasks);
+          
+          return a.title.localeCompare(b.title);
+        }
+        console.log('desc', tasks);
+
+        return b.title.localeCompare(a.title);
+       
+      }))
+    )
+  }
+
   deleteTask(task: Task): Observable<Task> {
     const url = `${this.apiURL}/${task.id}`;
     // console.log(url);
@@ -34,7 +53,6 @@ export class TaskService {
 
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiURL, task);
-    
   }
 
   updateTask(task: Task): Observable<Task> {
