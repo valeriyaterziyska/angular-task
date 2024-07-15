@@ -1,2 +1,3 @@
-Starting json server: #npm run server
+Starting json server: #npm run serve
+
 Starting angular: #ng serve
