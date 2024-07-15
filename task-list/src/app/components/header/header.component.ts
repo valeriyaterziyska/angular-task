@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { afterRender, Component, Injector, Input } from '@angular/core';
 import { UiService } from '../../services/ui.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
+import { TaskService } from '../../services/task.service';
+import { Task } from 'src/app/Task';
+import { TasksComponent } from '../tasks/tasks.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +12,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  @Input() task: Task;
+  @Input() tasks: Task[];
+
   title: string = 'Task List';
   showAddTask: boolean = false;
   subscription: Subscription;
 
-  constructor(private uiService: UiService) {
+  constructor(
+    private uiService: UiService,
+    private taskService: TaskService,
+    private router: Router
+  ) {
+    this.task = { title: '', completed: '' };
+    this.tasks = [];
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value) => (this.showAddTask = value));
@@ -20,5 +33,12 @@ export class HeaderComponent {
 
   addTask() {
     this.uiService.toggleAddTask();
+  }
+  sortTasks() {
+    this.taskService.getTasks().subscribe((tasks) => {
+      tasks.sort((a, b) => a.title.localeCompare(b.title));
+      
+      console.log('sorted', tasks);
+    });
   }
 }
